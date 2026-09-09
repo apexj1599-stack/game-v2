@@ -1,0 +1,13 @@
+{
+  "name": "nebula-survivors",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dependency-free static browser arena survival game",
+  "scripts": {
+    "lint": "eslint js",
+    "test": "node js/game-test.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.35.0"
+  }
+}
