@@ -1,28 +1,21 @@
 # Nebula Survivors
 
-A polished, original browser arena-survival game built with **HTML, CSS, and vanilla JavaScript**. No React, Vite, framework, or external game library is required.
+Nebula Survivors is a polished, original browser arena-survival game built with **HTML, CSS, and vanilla JavaScript**. It is dependency-free at runtime and does not require React, Vite, or an external game library.
 
 ## Play
 
-Open `index.html` in a modern browser, or serve the repository with any static web server. It is designed for desktop and mobile browsers.
+Serve the repository from a static web server, or deploy the repository root to a static host such as Netlify. The game is designed for desktop and mobile browsers.
 
-## What is included
+## Gameplay
 
-- Canvas-based real-time game loop
-- WASD and arrow-key movement
-- Mobile virtual joystick using Pointer Events
-- Automatic target selection and weapon firing
-- 8 original weapons with level scaling and evolution milestones
-- 6 upgrade types for damage, speed, pickup range, armor, health, and cooldown
-- Multiple enemies: Grunt, Runner, Brute, Ranged, Elite
-- Boss encounters with boss health bars
-- XP shards, level-ups, upgrade selection, kills, waves, and run statistics
-- Procedural arena with camera follow and visual effects
-- Particles, damage numbers, screen shake, glow effects, and simple Web Audio feedback
-- Pause/resume, restart, quit-to-menu, and game-over states
-- Responsive HUD and touch-friendly controls
-- Local persistent records using `localStorage`
-- Zero network gameplay dependency and no account required
+- Real-time Canvas 2D arena with camera follow
+- Auto-targeting weapon with multi-shot, fire-rate, projectile, and critical-hit upgrades
+- Escalating enemy waves with regular enemies, elites, and Warden boss encounters
+- XP shards, level-ups, three-choice upgrade cards, and persistent best-run records
+- HP regeneration, armor, pickup magnet, particles, glows, hit feedback, and lightweight Web Audio feedback
+- Pause, resume, restart, quit-to-menu, and game-over states
+- Responsive HUD and virtual joystick for touch devices
+- No network dependency during gameplay and no account/login requirement
 
 ## Controls
 
@@ -30,22 +23,29 @@ Open `index.html` in a modern browser, or serve the repository with any static w
 
 - **WASD / Arrow Keys:** Move
 - **P:** Pause / resume
-- **Mouse:** UI buttons
+- **Mouse:** UI controls
 
 ### Mobile
 
-- Drag the on-screen joystick to move.
-- Tap upgrade cards, pause, resume, and restart buttons.
+- Drag the virtual joystick to move.
+- Tap upgrade, pause, resume, restart, and menu buttons normally.
 
 ## Game flow
 
 1. Start a run.
-2. Stay alive while enemies close in from around the arena.
-3. Auto-attacks target nearby enemies.
-4. Collect blue XP shards.
-5. Level up and choose one of three upgrades.
-6. Add and improve weapons until your build becomes powerful enough for elite enemies and bosses.
-7. Survive as long as possible and improve your best run.
+2. Move through the arena while enemies spawn outside the visible play area.
+3. Your weapon automatically aims at the nearest living enemy.
+4. Collect cyan XP shards to level up.
+5. Choose one of three upgrades whenever you level up.
+6. Enemy density and strength increase with time, with elite enemies appearing more often.
+7. Warden bosses appear on the two-minute cycle and award a large XP payout when defeated.
+8. Push for a better time and level on every run.
+
+## Reliability and debugging
+
+The runtime initializes after the DOM is ready, validates required elements, validates the Canvas 2D context, and keeps a visible error panel for uncaught runtime errors. The animation loop is protected so a frame exception stops gameplay without leaving a silent black screen.
+
+Canvas backing resolution is scaled by device pixel ratio (capped at 2x), while the simulation delta is clamped to prevent huge updates after tab switches or stalled frames. Local save parsing is guarded so malformed storage data cannot prevent startup.
 
 ## Project structure
 
@@ -55,33 +55,37 @@ Open `index.html` in a modern browser, or serve the repository with any static w
 ├── css/
 │   └── main.css
 ├── js/
-│   └── main.js
+│   ├── main.js
+│   └── game-test.js
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── eslint.config.js
+├── package.json
 ├── netlify.toml
+├── LICENSE
 └── README.md
 ```
 
-## Architecture
+## Quality checks
 
-`index.html` contains the semantic UI, overlays, HUD, canvas, and mobile controls. `css/main.css` handles the visual system and responsive layout. `js/main.js` contains the complete game state, entities, input, spawning, combat, upgrades, rendering, persistence, and audio feedback.
+```bash
+npm install
+npm run lint
+npm test
+node --check js/main.js
+```
 
-The game uses `requestAnimationFrame()` for the real-time loop and Canvas 2D for highly dynamic rendering. Collision is based on lightweight circular hitboxes so large enemy counts remain manageable in a browser.
-
-## Performance notes
-
-The canvas is scaled for device pixel ratio with a cap of 2x. The frame delta is clamped to avoid very large simulation jumps after tab switching or slow frames. The game also uses simple arrays and bounded particle lifetimes to keep transient effects under control.
-
-## Save data
-
-Run records are stored locally under the key `nebula-survivors-v2`. Clearing browser site data resets the local records.
-
-## Original-content note
-
-Nebula Survivors is an original project. It is inspired by the broad arena-survival genre, but it does not copy another game's branding, proprietary code, artwork, sound effects, characters, or exact level content.
+GitHub Actions runs these checks automatically on pushes and pull requests targeting `main` or `game-v2`.
 
 ## Deployment
 
-This repo is static and works with GitHub Pages, Netlify, Cloudflare Pages, or any static host. Netlify can publish the repository root because `index.html` is at the project root.
+The repository is static. Netlify should use the repository root as the publish directory with no build command. The active game implementation is on the `game-v2` branch.
+
+## Original-content note
+
+Nebula Survivors is an original project inspired by the broad arena-survival genre. It does not copy another game's branding, proprietary code, artwork, audio, characters, or exact level content.
 
 ## License
 
-The source code in this repository is released under the MIT License. See `LICENSE` for the full text.
+The source code is released under the MIT License. See `LICENSE` for the full text.
