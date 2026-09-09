@@ -1,0 +1,27 @@
+name: Game CI
+
+on:
+  push:
+    branches: [main, game-v2]
+  pull_request:
+    branches: [main, game-v2]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Syntax check
+        run: node --check js/main.js
+      - name: Lint
+        run: npm run lint
+      - name: Game math tests
+        run: npm test
