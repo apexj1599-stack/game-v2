@@ -2,6 +2,7 @@
   "name": "nebula-survivors",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "description": "Dependency-free static browser arena survival game",
   "scripts": {
     "lint": "eslint js",
