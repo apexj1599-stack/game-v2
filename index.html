@@ -1,76 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#07111f" />
-  <meta name="description" content="Nebula Survivors — an original browser arena survival game." />
-  <title>Nebula Survivors</title>
-  <link rel="stylesheet" href="css/main.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>Nebula Survivors</title>
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <main id="app" class="app">
-    <canvas id="game" aria-label="Nebula Survivors game canvas"></canvas>
-
-    <section id="hud" class="hud hidden" aria-live="polite">
-      <div class="hud-top">
-        <div class="stat-pill"><span>LEVEL</span><strong id="level">1</strong></div>
-        <div class="stat-pill"><span>WAVE</span><strong id="wave">1</strong></div>
-        <div class="stat-pill"><span>TIME</span><strong id="time">00:00</strong></div>
-        <div class="stat-pill"><span>KILLS</span><strong id="kills">0</strong></div>
-        <button id="pauseBtn" class="icon-btn" type="button" aria-label="Pause game">Ⅱ</button>
-      </div>
-      <div class="bars">
-        <div class="bar-wrap"><span>HP</span><div class="bar hp"><i id="hpBar"></i></div></div>
-        <div class="bar-wrap"><span>XP</span><div class="bar xp"><i id="xpBar"></i></div></div>
-      </div>
-      <div id="bossBar" class="boss-bar hidden"><div class="boss-label"><span>BOSS</span><strong id="bossName">WARDEN</strong></div><div class="bar boss"><i id="bossHpBar"></i></div></div>
-    </section>
-
-    <section id="menu" class="screen-card visible">
-      <div class="brand-mark">✦</div>
-      <p class="eyebrow">ORIGINAL ARENA SURVIVAL</p>
-      <h1>NEBULA <span>SURVIVORS</span></h1>
-      <p class="subtitle">Build a ridiculous arsenal, survive escalating swarms, and evolve your loadout every run.</p>
-      <button id="startBtn" class="primary-btn" type="button">START RUN</button>
-      <div class="feature-row"><span>⚡ Auto-combat</span><span>◆ 8 weapons</span><span>☄ Boss waves</span><span>📱 Touch ready</span></div>
-      <p class="hint">WASD / Arrow Keys to move • P to pause • Collect shards to level up</p>
-    </section>
-
-    <section id="upgrade" class="screen-card hidden">
-      <p class="eyebrow">LEVEL UP</p>
-      <h2>Choose your upgrade</h2>
-      <div id="upgradeGrid" class="upgrade-grid"></div>
-    </section>
-
-    <section id="pause" class="screen-card hidden">
-      <p class="eyebrow">RUN PAUSED</p>
-      <h2>Take a breath.</h2>
-      <button id="resumeBtn" class="primary-btn" type="button">RESUME</button>
-      <button id="quitBtn" class="secondary-btn" type="button">QUIT RUN</button>
-    </section>
-
-    <section id="gameover" class="screen-card hidden">
-      <div class="result-icon">☄</div>
-      <p class="eyebrow">RUN COMPLETE</p>
-      <h2 id="gameoverTitle">The swarm wins.</h2>
-      <div class="results-grid">
-        <div><span>TIME</span><strong id="finalTime">00:00</strong></div>
-        <div><span>LEVEL</span><strong id="finalLevel">1</strong></div>
-        <div><span>KILLS</span><strong id="finalKills">0</strong></div>
-        <div><span>SHARDS</span><strong id="finalShards">0</strong></div>
-      </div>
-      <p class="record">BEST TIME <strong id="bestTime">00:00</strong> • BEST LEVEL <strong id="bestLevel">1</strong></p>
-      <button id="restartBtn" class="primary-btn" type="button">PLAY AGAIN</button>
-      <button id="menuBtn" class="secondary-btn" type="button">MAIN MENU</button>
-    </section>
-
-    <div id="touchControls" class="touch-controls hidden" aria-hidden="true">
-      <div id="joystick" class="joystick"><div id="stick" class="stick"></div></div>
-    </div>
-
-    <div id="toast" class="toast hidden"></div>
-  </main>
-  <script type="module" src="js/main.js"></script>
+<main id="app" class="app">
+<canvas id="game"></canvas>
+<section id="hud" class="hud hidden"><div class="hud-top"><div class="stat-pill"><span>LEVEL</span><strong id="level">1</strong></div><div class="stat-pill"><span>WAVE</span><strong id="wave">1</strong></div><div class="stat-pill"><span>TIME</span><strong id="time">00:00</strong></div><div class="stat-pill"><span>KILLS</span><strong id="kills">0</strong></div><button id="pauseBtn" class="icon-btn" type="button">Ⅱ</button></div><div class="bars"><div class="bar-wrap"><span>HP</span><div class="bar hp"><i id="hpBar"></i></div></div><div class="bar-wrap"><span>XP</span><div class="bar xp"><i id="xpBar"></i></div></div></div></section>
+<section id="menu" class="screen-card visible"><div class="brand-mark">✦</div><p class="eyebrow">ORIGINAL ARENA SURVIVAL</p><h1>NEBULA <span>SURVIVORS</span></h1><p class="subtitle">Build a ridiculous arsenal, survive escalating swarms, and evolve your loadout every run.</p><button id="startBtn" class="primary-btn" type="button">START RUN</button><div class="feature-row"><span>⚡ Auto-combat</span><span>◆ Upgrades</span><span>☄ Enemy waves</span><span>📱 Touch ready</span></div><p class="hint">WASD / Arrow Keys to move • P to pause</p></section>
+<section id="upgrade" class="screen-card hidden"><p class="eyebrow">LEVEL UP</p><h2>Choose your upgrade</h2><div id="upgradeGrid" class="upgrade-grid"></div></section>
+<section id="pause" class="screen-card hidden"><p class="eyebrow">RUN PAUSED</p><h2>Take a breath.</h2><button id="resumeBtn" class="primary-btn" type="button">RESUME</button><button id="quitBtn" class="secondary-btn" type="button">QUIT RUN</button></section>
+<section id="gameover" class="screen-card hidden"><div class="result-icon">☄</div><p class="eyebrow">RUN COMPLETE</p><h2>The swarm wins.</h2><div class="results-grid"><div><span>TIME</span><strong id="finalTime">00:00</strong></div><div><span>LEVEL</span><strong id="finalLevel">1</strong></div><div><span>KILLS</span><strong id="finalKills">0</strong></div><div><span>SHARDS</span><strong id="finalShards">0</strong></div></div><button id="restartBtn" class="primary-btn" type="button">PLAY AGAIN</button><button id="menuBtn" class="secondary-btn" type="button">MAIN MENU</button></section>
+</main>
+<script src="js/main.js" defer></script>
 </body>
 </html>
