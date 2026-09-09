@@ -1,0 +1,23 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verify required files
+        shell: bash
+        run: |
+          set -e
+          test -f index.html
+          test -f css/main.css
+          test -f js/main.js
+          test -f README.md
+          grep -q 'js/main.js' index.html
+          grep -q 'css/main.css' index.html
+          echo 'Static game structure looks good.'
