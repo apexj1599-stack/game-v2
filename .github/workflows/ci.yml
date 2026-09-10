@@ -1,0 +1,30 @@
+name: Game CI
+
+on:
+  push:
+    branches: [main, game-v2, game-v3]
+  pull_request:
+    branches: [main, game-v2, game-v3]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Syntax check
+        run: npm run syntax
+      - name: Lint
+        run: npm run lint
+      - name: Game tests and UI smoke test
+        run: npm test

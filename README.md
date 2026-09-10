@@ -1,87 +1,49 @@
 # Nebula Survivors
 
-A polished, original browser arena-survival game built with **HTML, CSS, and vanilla JavaScript**. No React, Vite, framework, or external game library is required.
+Nebula Survivors is an original browser arena-survival game built with HTML, CSS, Canvas 2D, and vanilla JavaScript. It has no runtime framework, login, analytics, or gameplay network requirement.
 
-## Play
+## Current shared build
 
-Open `index.html` in a modern browser, or serve the repository with any static web server. It is designed for desktop and mobile browsers.
+The same core build is maintained on `main`, `game-v2`, and `game-v3`.
 
-## What is included
-
-- Canvas-based real-time game loop
-- WASD and arrow-key movement
-- Mobile virtual joystick using Pointer Events
-- Automatic target selection and weapon firing
-- 8 original weapons with level scaling and evolution milestones
-- 6 upgrade types for damage, speed, pickup range, armor, health, and cooldown
-- Multiple enemies: Grunt, Runner, Brute, Ranged, Elite
-- Boss encounters with boss health bars
-- XP shards, level-ups, upgrade selection, kills, waves, and run statistics
-- Procedural arena with camera follow and visual effects
-- Particles, damage numbers, screen shake, glow effects, and simple Web Audio feedback
-- Pause/resume, restart, quit-to-menu, and game-over states
-- Responsive HUD and touch-friendly controls
-- Local persistent records using `localStorage`
-- Zero network gameplay dependency and no account required
+- Endless escalating waves with grunts, runners, tanks, elites, and Void Warden bosses
+- Automatic nearest-target combat
+- Pulse Blaster, Orbit Shards, and Nova Ring weapon families
+- Weapon levels, passive skills, build synergy, and original evolutions
+- Random three-card level-up choices
+- XP, score, kills, waves, health, armor, pickup range, haste, multi-shot, and movement upgrades
+- Procedural neon arena visuals, particles, hit flashes, enemy health bars, projectiles, arena rings, and boss presentation
+- Low / Medium / High / Ultra graphics presets
+- Particle, glow, grid, damage-number, screen-shake, high-contrast, and reduced-motion settings
+- Master volume with lightweight Web Audio effects started from user interaction
+- Keyboard, mobile virtual joystick, and gamepad movement
+- Pause, resume, settings-from-pause, quit, restart, and game-over flows
+- Local top-10 high-score leaderboard
+- Guarded and normalized localStorage settings/scores
+- Built-in player themes and client-only PNG/JPEG custom skin validation (2 MB, 16–1024 px)
+- Runtime error overlay, clamped animation delta, HiDPI canvas rendering, and input reset on focus loss
 
 ## Controls
 
-### Desktop
+Desktop: **WASD / Arrow Keys** move, **P / Esc** pause. Gamepad: left stick moves. Mobile: drag the virtual joystick. Mouse/touch controls menus and upgrades.
 
-- **WASD / Arrow Keys:** Move
-- **P:** Pause / resume
-- **Mouse:** UI buttons
+## Run locally
 
-### Mobile
+Serve the repository root with any static server, or deploy the root to a static host such as Netlify. There is no build step required.
 
-- Drag the on-screen joystick to move.
-- Tap upgrade cards, pause, resume, and restart buttons.
+## Quality checks
 
-## Game flow
-
-1. Start a run.
-2. Stay alive while enemies close in from around the arena.
-3. Auto-attacks target nearby enemies.
-4. Collect blue XP shards.
-5. Level up and choose one of three upgrades.
-6. Add and improve weapons until your build becomes powerful enough for elite enemies and bosses.
-7. Survive as long as possible and improve your best run.
-
-## Project structure
-
-```text
-.
-├── index.html
-├── css/
-│   └── main.css
-├── js/
-│   └── main.js
-├── netlify.toml
-└── README.md
+```bash
+npm install
+npm run check
 ```
 
-## Architecture
+CI runs syntax checks, ESLint, gameplay validation tests, and a zero-dependency UI smoke test that boots the game logic and verifies Start, Settings, High Scores, Pause, and Back flows.
 
-`index.html` contains the semantic UI, overlays, HUD, canvas, and mobile controls. `css/main.css` handles the visual system and responsive layout. `js/main.js` contains the complete game state, entities, input, spawning, combat, upgrades, rendering, persistence, and audio feedback.
+## Privacy
 
-The game uses `requestAnimationFrame()` for the real-time loop and Canvas 2D for highly dynamic rendering. Collision is based on lightweight circular hitboxes so large enemy counts remain manageable in a browser.
-
-## Performance notes
-
-The canvas is scaled for device pixel ratio with a cap of 2x. The frame delta is clamped to avoid very large simulation jumps after tab switching or slow frames. The game also uses simple arrays and bounded particle lifetimes to keep transient effects under control.
-
-## Save data
-
-Run records are stored locally under the key `nebula-survivors-v2`. Clearing browser site data resets the local records.
+Gameplay, settings, scores, and custom player images stay local to the browser. Custom image skins are session-only in this implementation.
 
 ## Original-content note
 
-Nebula Survivors is an original project. It is inspired by the broad arena-survival genre, but it does not copy another game's branding, proprietary code, artwork, sound effects, characters, or exact level content.
-
-## Deployment
-
-This repo is static and works with GitHub Pages, Netlify, Cloudflare Pages, or any static host. Netlify can publish the repository root because `index.html` is at the project root.
-
-## License
-
-The source code in this repository is released under the MIT License. See `LICENSE` for the full text.
+The project follows the broad arena-survival genre pattern while using original names, mechanics, procedural visuals, UI, and audio. It does not copy another game's proprietary code, branding, artwork, audio, characters, or exact content.
